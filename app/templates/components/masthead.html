@@ -1,0 +1,18 @@
+<!-- Institutional Top Masthead Banner -->
+<div class="institutional-masthead-ribbon">
+  <div class="content-bound masthead-flex">
+    <span class="motto-latin">
+      <span class="latin-symbol">✦</span> VERITAS ET SCIENTIA ASTRONAUTICA <span class="latin-symbol">✦</span>
+      IN COOPERATIONE CUM NASA SPACE APPS CHALLENGE
+    </span>
+    <div class="masthead-links">
+      <a href="#archives" class="ribbon-link">Archival Catalog</a>
+      <span class="ribbon-sep">|</span>
+      <a href="#telemetry" class="ribbon-link">Cluster Node</a>
+      <span class="ribbon-sep">|</span>
+      <span class="node-status-indicator {% if redis_connected %}node-live{% else %}node-standby{% endif %}">
+        <span class="pulse-dot"></span> REDIS CACHE: {{ 'ACTIVE' if redis_connected else 'STANDBY' }}
+      </span>
+    </div>
+  </div>
+</div>

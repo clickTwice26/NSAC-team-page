@@ -1,0 +1,71 @@
+<!-- Academic Hero Section Component -->
+<section class="academic-hero-section">
+  <div class="content-bound">
+    <div class="hero-header-line">
+      <span class="archival-reference">ARCHIVAL DISPATCH // REF-NO: NASA-SPA-2026-B89</span>
+      <span class="classification-tag">UNRESTRICTED SCHOLARLY RELEASE</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-main-column">
+        <h1 class="hero-academic-title">
+          Laboratory for Deep Space Dynamics <span class="ampersand">&amp;</span> Astrodynamics Computation
+        </h1>
+        <p class="hero-lead-paragraph">
+          Investigating non-linear orbital mechanics, relativistic celestial mechanics, and high-throughput telemetry consensus architectures for autonomous interplanetary exploration swarms.
+        </p>
+        <div class="hero-citation-block">
+          <div class="citation-mark">&ldquo;</div>
+          <p class="citation-quote">
+            Nature does not withhold her celestial secrets from theoretical exactitude; rather, she demands algorithms capable of navigating the stochastic perturbations of the cosmos.
+          </p>
+          <div class="citation-source">— From the Inaugural Address of the Regius Chair in Astrodynamics, 1888</div>
+        </div>
+
+        <div class="hero-cta-group">
+          <a href="#research" class="btn-academic-primary">Explore Research Pillars &rarr;</a>
+          <a href="#telemetry" class="btn-academic-secondary">Live Telemetry Sandbox</a>
+          <a href="#publications" class="btn-academic-text">Preprint Monograph Archive</a>
+        </div>
+      </div>
+
+      <div class="hero-stats-panel">
+        <div class="panel-header">
+          <span class="panel-title">INSTITUTIONAL METRICS MATRIX</span>
+          <span class="panel-badge">CYCLE 2026.3</span>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-cell">
+            <span class="metric-value">14.8M</span>
+            <span class="metric-label">Telemetry Packets / Cycle</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-value">38</span>
+            <span class="metric-label">Peer-Reviewed Treatises</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-value">04</span>
+            <span class="metric-label">Orbital Swarm Probes</span>
+          </div>
+          <div class="metric-cell highlight-cell">
+            <span class="metric-value">{{ visits if visits else '1' }}</span>
+            <span class="metric-label">Verified Archival Visits (Redis Sync)</span>
+          </div>
+        </div>
+
+        <div class="telemetry-compact-feed">
+          <div class="feed-row">
+            <span class="feed-time">LIVE SYNC</span>
+            <span class="feed-channel">REDIS IN-MEMORY STORE</span>
+            <span class="feed-status {% if redis_connected %}status-active{% else %}status-inactive{% endif %}">
+              {{ 'AUTHENTICATED' if redis_connected else 'UNREACHABLE' }}
+            </span>
+          </div>
+          <div class="feed-desc">
+            {{ redis_status }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

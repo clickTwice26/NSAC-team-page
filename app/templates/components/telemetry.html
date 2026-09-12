@@ -1,0 +1,75 @@
+<!-- Section VI: Live Redis Telemetry Sandbox Component -->
+<section id="telemetry" class="academic-section telemetry-dark-section">
+  <div class="content-bound">
+    <div class="section-label-block light-text">
+      <span class="section-roman gold">SECTION VI</span>
+      <h2 class="section-title">Computational In-Memory Matrix (Redis Telemetry)</h2>
+      <p class="section-desc">
+        Direct live bridge to the protected Redis memory tier. Use this diagnostics interface to query state keys or verify sub-millisecond node synchronization.
+      </p>
+      <div class="title-separator gold-sep"></div>
+    </div>
+
+    <div class="telemetry-terminal-window">
+      <div class="terminal-topbar">
+        <div class="terminal-lights">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-title">REDIS_PROTOCOL_INSPECTOR // NODE: ASTRO-ALPHA-01 // ENCRYPTION: AUTH_ACTIVE</div>
+        <div class="terminal-status-tag {% if redis_connected %}green-tag{% else %}amber-tag{% endif %}">
+          {{ 'SECURE LINK' if redis_connected else 'CONNECTION PENDING' }}
+        </div>
+      </div>
+
+      <div class="terminal-body">
+        <div class="terminal-grid">
+          <div class="terminal-info-pane">
+            <h4 class="pane-title">Current Ingested State</h4>
+            <table class="telemetry-table">
+              <tr>
+                <td>REDIS_URL:</td>
+                <td><code>redis://:dev_redis_password@redis:6379/0</code></td>
+              </tr>
+              <tr>
+                <td>PASSWORD AUTH:</td>
+                <td><span class="badge-active">ENFORCED (requirepass)</span></td>
+              </tr>
+              <tr>
+                <td>REGISTERED CALLS:</td>
+                <td><strong id="sessionCounter">{{ visits if visits else 'Offline / Mock' }}</strong> Invocations</td>
+              </tr>
+              <tr>
+                <td>CLUSTER STATUS:</td>
+                <td><span class="badge-status">{{ redis_status }}</span></td>
+              </tr>
+              <tr>
+                <td>HEALTH ENDPOINT:</td>
+                <td><a href="/health/redis" target="_blank" class="terminal-link">/health/redis (JSON Ping)</a></td>
+              </tr>
+            </table>
+
+            <div class="telemetry-quick-actions">
+              <button id="btnPingRedis" class="btn-term-action">EXECUTE REDIS PING</button>
+              <button id="btnFetchTelemetry" class="btn-term-action secondary">SAMPLE ORBITAL VECTOR</button>
+            </div>
+          </div>
+
+          <div class="terminal-console-pane">
+            <div class="console-header">
+              <span>LIVE LOG STREAM</span>
+              <button class="clear-console-btn" id="btnClearConsole">Clear Log</button>
+            </div>
+            <div class="console-screen" id="consoleScreen">
+              <div class="console-line info">[INIT] Connecting to Redis memory grid...</div>
+              <div class="console-line success">[AUTH] Authenticated with secure credentials.</div>
+              <div class="console-line">[READY] Academic cache layer synchronized.</div>
+              <div class="console-line highlight">[METRIC] Key 'academic_portal_access_count' &rarr; {{ visits if visits else '1' }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

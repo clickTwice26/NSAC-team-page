@@ -1,0 +1,38 @@
+<!-- Section IV: Publications & Monographs Component -->
+<section id="publications" class="academic-section">
+  <div class="content-bound">
+    <div class="section-label-block">
+      <span class="section-roman">SECTION IV</span>
+      <h2 class="section-title">Selected Monographs &amp; Working Papers</h2>
+      <div class="title-separator"></div>
+    </div>
+
+    <div class="publications-list">
+      {% for pub in publications %}
+      <div class="publication-entry">
+        <div class="pub-year-badge">{{ pub.year }}</div>
+        <div class="pub-details">
+          <div class="pub-meta">
+            <span class="pub-type">{{ pub.type }}</span>
+            <span class="pub-journal">{{ pub.journal }}</span>
+          </div>
+          <h3 class="pub-title">{{ pub.title }}</h3>
+          <div class="pub-authors">{{ pub.authors }}</div>
+          <div class="pub-identifiers">
+            <span class="doi-label">DOI:</span>
+            <a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener" class="doi-link">{{ pub.doi }}</a>
+            <span class="sep-dot">&bull;</span>
+            <span class="archive-status">Archived in Harvard-Smithsonian Astrophysics Data System (ADS)</span>
+          </div>
+        </div>
+        <div class="pub-action">
+          <button class="btn-pdf-download" onclick="alert('Monograph preprint indexed. Complete mathematical derivation available under NASA open-access repository.')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Preprint PDF
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

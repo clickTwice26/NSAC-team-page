@@ -1,0 +1,40 @@
+<!-- Section II: Active Research Pillars Component -->
+<section id="research" class="academic-section">
+  <div class="content-bound">
+    <div class="section-header-flex">
+      <div class="section-label-block">
+        <span class="section-roman">SECTION II</span>
+        <h2 class="section-title">Principal Research Divisions</h2>
+        <div class="title-separator"></div>
+      </div>
+      <div class="category-filter-tags">
+        <span class="filter-pill active">All Divisions</span>
+        <span class="filter-pill">Astrodynamics</span>
+        <span class="filter-pill">Spectroscopy</span>
+        <span class="filter-pill">Plasma Physics</span>
+      </div>
+    </div>
+
+    <div class="pillars-grid">
+      {% for pillar in pillars %}
+      <article class="pillar-card">
+        <div class="pillar-top-meta">
+          <span class="pillar-code">{{ pillar.code }}</span>
+          <span class="pillar-status-badge">{{ pillar.status }}</span>
+        </div>
+        <h3 class="pillar-title">{{ pillar.title }}</h3>
+        <div class="pillar-lead-info">
+          <strong>Director:</strong> {{ pillar.lead }} &bull; <span class="inst-tag">{{ pillar.institution }}</span>
+        </div>
+        <p class="pillar-abstract">
+          {{ pillar.abstract }}
+        </p>
+        <div class="pillar-footer">
+          <span class="grant-badge">{{ pillar.badge }}</span>
+          <a href="#publications" class="card-link">Review Treatises &rarr;</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

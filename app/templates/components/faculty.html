@@ -1,0 +1,30 @@
+<!-- Section III: Faculty Directorate Component -->
+<section id="faculty" class="academic-section section-parchment">
+  <div class="content-bound">
+    <div class="section-label-block">
+      <span class="section-roman">SECTION III</span>
+      <h2 class="section-title">Faculty Directorate &amp; Research Fellows</h2>
+      <div class="title-separator"></div>
+    </div>
+
+    <div class="faculty-grid">
+      {% for member in faculty %}
+      <div class="faculty-card">
+        <div class="faculty-avatar-box">
+          <div class="academic-monogram">{{ member.initials }}</div>
+        </div>
+        <div class="faculty-info">
+          <h3 class="faculty-name">{{ member.name }}</h3>
+          <div class="faculty-role">{{ member.role }}</div>
+          <div class="faculty-dept">{{ member.affiliation }}</div>
+          <p class="faculty-bio">{{ member.bio }}</p>
+          <div class="faculty-meta">
+            <span class="faculty-badge">Tenured Fellow</span>
+            <a href="mailto:directorate@spaceapps-institute.edu" class="faculty-contact">Contact Index &rarr;</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
