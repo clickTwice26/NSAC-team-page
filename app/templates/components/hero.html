@@ -1,64 +1,62 @@
-<!-- Academic Hero Section Component -->
-<section class="academic-hero-section">
+<!-- Hero Section Component -->
+<section class="academic-hero-section" id="about">
   <div class="content-bound">
     <div class="hero-header-line">
-      <span class="archival-reference">ARCHIVAL DISPATCH // REF-NO: NASA-SPA-2026-B89</span>
-      <span class="classification-tag">UNRESTRICTED SCHOLARLY RELEASE</span>
+      <span class="archival-reference">MISSION DISPATCH // NASA SPACE APPS CHALLENGE</span>
+      <span class="classification-tag">OFFICIAL TEAM SUBMISSION</span>
     </div>
 
     <div class="hero-grid">
       <div class="hero-main-column">
         <h1 class="hero-academic-title">
-          Laboratory for Deep Space Dynamics <span class="ampersand">&amp;</span> Astrodynamics Computation
+          Team <span class="highlight-team-name">Nasa</span>
         </h1>
         <p class="hero-lead-paragraph">
-          Investigating non-linear orbital mechanics, relativistic celestial mechanics, and high-throughput telemetry consensus architectures for autonomous interplanetary exploration swarms.
+          {{ project.tagline }}
         </p>
+        
         <div class="hero-citation-block">
-          <div class="citation-mark">&ldquo;</div>
           <p class="citation-quote">
-            Nature does not withhold her celestial secrets from theoretical exactitude; rather, she demands algorithms capable of navigating the stochastic perturbations of the cosmos.
+            &ldquo;{{ team.motto }}&rdquo;
           </p>
-          <div class="citation-source">— From the Inaugural Address of the Regius Chair in Astrodynamics, 1888</div>
+          <div class="citation-source">— Team Nasa &bull; {{ team.track }}</div>
         </div>
 
         <div class="hero-cta-group">
-          <a href="#research" class="btn-academic-primary">Explore Research Pillars &rarr;</a>
-          <a href="#telemetry" class="btn-academic-secondary">Live Telemetry Sandbox</a>
-          <a href="#publications" class="btn-academic-text">Preprint Monograph Archive</a>
+          <a href="#team" class="btn-academic-primary">Meet The 5 Team Members &rarr;</a>
+          <a href="#project" class="btn-academic-secondary">Explore Project Showcase</a>
         </div>
       </div>
 
       <div class="hero-stats-panel">
         <div class="panel-header">
-          <span class="panel-title">INSTITUTIONAL METRICS MATRIX</span>
-          <span class="panel-badge">CYCLE 2026.3</span>
+          <span class="panel-title">TEAM OVERVIEW</span>
+          <span class="panel-badge">5 RESEARCHERS</span>
         </div>
         <div class="metrics-grid">
           <div class="metric-cell">
-            <span class="metric-value">14.8M</span>
-            <span class="metric-label">Telemetry Packets / Cycle</span>
+            <span class="metric-value">5</span>
+            <span class="metric-label">Team Members</span>
           </div>
           <div class="metric-cell">
-            <span class="metric-value">38</span>
-            <span class="metric-label">Peer-Reviewed Treatises</span>
+            <span class="metric-value">4</span>
+            <span class="metric-label">Core Modules</span>
           </div>
           <div class="metric-cell">
-            <span class="metric-value">04</span>
-            <span class="metric-label">Orbital Swarm Probes</span>
+            <span class="metric-value">100%</span>
+            <span class="metric-label">Open Source</span>
           </div>
           <div class="metric-cell highlight-cell">
             <span class="metric-value">{{ visits if visits else '1' }}</span>
-            <span class="metric-label">Verified Archival Visits (Redis Sync)</span>
+            <span class="metric-label">Live Redis Visits</span>
           </div>
         </div>
 
         <div class="telemetry-compact-feed">
           <div class="feed-row">
-            <span class="feed-time">LIVE SYNC</span>
-            <span class="feed-channel">REDIS IN-MEMORY STORE</span>
+            <span class="feed-time">STATUS</span>
             <span class="feed-status {% if redis_connected %}status-active{% else %}status-inactive{% endif %}">
-              {{ 'AUTHENTICATED' if redis_connected else 'UNREACHABLE' }}
+              {{ 'REDIS CONNECTED' if redis_connected else 'STANDALONE MODE' }}
             </span>
           </div>
           <div class="feed-desc">
