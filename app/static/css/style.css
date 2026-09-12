@@ -21,14 +21,6 @@
   --ink-muted: #5C6068;
   --rule-border: #D8D0C0;
   
-  /* Telemetry / In-Memory Grid */
-  --terminal-bg: #0C1017;
-  --terminal-surface: #141A24;
-  --terminal-border: #232B3A;
-  --terminal-green: #38D9A9;
-  --terminal-amber: #FAB005;
-  --terminal-cyan: #4DABF7;
-  
   /* Typography */
   --font-serif-display: "Cinzel", "Times New Roman", serif;
   --font-serif-body: "Newsreader", "Cormorant Garamond", Georgia, serif;
@@ -125,35 +117,6 @@ a:hover {
 
 .ribbon-sep {
   opacity: 0.4;
-}
-
-.node-status-indicator {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.15rem 0.5rem;
-  border-radius: 3px;
-  font-weight: 600;
-}
-
-.node-status-indicator.node-live {
-  background: rgba(56, 217, 169, 0.15);
-  color: #69DB7C;
-  border: 1px solid rgba(105, 219, 124, 0.3);
-}
-
-.node-status-indicator.node-standby {
-  background: rgba(250, 176, 5, 0.15);
-  color: #FFD43B;
-  border: 1px solid rgba(255, 212, 59, 0.3);
-}
-
-.pulse-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  box-shadow: 0 0 8px currentColor;
 }
 
 /* ==========================================================================
@@ -253,7 +216,7 @@ a:hover {
   width: 100%;
 }
 
-.academic-nav .telemetry-nav-btn {
+.academic-nav .nav-btn-primary {
   background: var(--crimson-primary);
   color: #fff !important;
   padding: 0.4rem 0.85rem;
@@ -261,11 +224,11 @@ a:hover {
   border: 1px solid var(--crimson-deep);
 }
 
-.academic-nav .telemetry-nav-btn::after {
+.academic-nav .nav-btn-primary::after {
   display: none;
 }
 
-.academic-nav .telemetry-nav-btn:hover {
+.academic-nav .nav-btn-primary:hover {
   background: var(--crimson-deep);
 }
 
@@ -472,44 +435,27 @@ a:hover {
   color: var(--ink-muted);
 }
 
-.telemetry-compact-feed {
+.team-mission-footer-box {
   padding: 1rem 1.25rem;
   background: var(--parchment-warm);
-}
-
-.feed-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  margin-bottom: 0.4rem;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.feed-time {
+.mission-track-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   color: var(--gold-dark);
   font-weight: 700;
+  text-transform: uppercase;
 }
 
-.feed-status.status-active {
-  color: #2B8A3E;
-  font-weight: 700;
-}
-
-.feed-status.status-inactive {
-  color: #C92A2A;
-  font-weight: 700;
-}
-
-.feed-desc {
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
+.mission-track-title {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
   color: var(--ink-charcoal);
-  background: #fff;
-  padding: 0.5rem 0.75rem;
-  border-radius: 3px;
-  border: 1px solid var(--rule-border);
-  word-break: break-all;
 }
 
 /* ==========================================================================
@@ -569,7 +515,6 @@ a:hover {
   gap: 2rem;
 }
 
-/* Make the last two cards balance gracefully when 5 members are displayed */
 .team-card:nth-child(4),
 .team-card:nth-child(5) {
   grid-column: span 1;
@@ -877,221 +822,6 @@ a:hover {
 }
 
 /* ==========================================================================
-   LIVE REDIS TELEMETRY SECTION
-   ========================================================================== */
-.telemetry-dark-section {
-  background: var(--terminal-bg);
-  color: #E6EDF3;
-}
-
-.section-label-block.light-text .section-title {
-  color: #F0F6FC;
-}
-
-.section-label-block.light-text .section-roman.gold {
-  color: var(--gold-accent);
-}
-
-.section-desc {
-  font-size: 1.05rem;
-  color: #8B949E;
-  max-width: 720px;
-  margin-top: 0.35rem;
-}
-
-.title-separator.gold-sep {
-  background: var(--gold-accent);
-}
-
-.telemetry-terminal-window {
-  background: var(--terminal-surface);
-  border: 1px solid var(--terminal-border);
-  border-radius: 6px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
-}
-
-.terminal-topbar {
-  background: #090D13;
-  border-bottom: 1px solid var(--terminal-border);
-  padding: 0.75rem 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.terminal-lights {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.terminal-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.terminal-dot.red { background: #FF5F56; }
-.terminal-dot.yellow { background: #FFBD2E; }
-.terminal-dot.green { background: #27C93F; }
-
-.terminal-title {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: #8B949E;
-}
-
-.terminal-status-tag {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  padding: 0.15rem 0.5rem;
-  border-radius: 3px;
-  font-weight: 600;
-}
-
-.terminal-status-tag.green-tag {
-  background: rgba(46, 160, 67, 0.15);
-  color: #3FB950;
-  border: 1px solid rgba(63, 185, 80, 0.3);
-}
-
-.terminal-status-tag.amber-tag {
-  background: rgba(210, 153, 34, 0.15);
-  color: #E3B341;
-  border: 1px solid rgba(227, 179, 65, 0.3);
-}
-
-.terminal-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-}
-
-.terminal-info-pane {
-  padding: 1.75rem;
-  border-right: 1px solid var(--terminal-border);
-}
-
-.pane-title {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--gold-accent);
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-
-.telemetry-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.telemetry-table td {
-  padding: 0.65rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  color: #C9D1D9;
-}
-
-.telemetry-table td:first-child {
-  color: #8B949E;
-  width: 42%;
-}
-
-.badge-active {
-  background: rgba(56, 217, 169, 0.12);
-  color: var(--terminal-green);
-  padding: 0.15rem 0.4rem;
-  border-radius: 2px;
-  font-size: 0.72rem;
-}
-
-.terminal-link {
-  color: var(--terminal-cyan);
-}
-
-.telemetry-quick-actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.btn-term-action {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  background: var(--crimson-primary);
-  color: #fff;
-  border: 1px solid var(--crimson-light);
-  padding: 0.6rem 1.1rem;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.btn-term-action:hover {
-  background: var(--crimson-light);
-}
-
-.btn-term-action.secondary {
-  background: #21262D;
-  border-color: #30363D;
-  color: #C9D1D9;
-}
-
-.btn-term-action.secondary:hover {
-  background: #30363D;
-}
-
-.terminal-console-pane {
-  display: flex;
-  flex-direction: column;
-  background: #080B10;
-}
-
-.console-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid var(--terminal-border);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: #8B949E;
-}
-
-.clear-console-btn {
-  background: transparent;
-  border: 1px solid #30363D;
-  color: #8B949E;
-  padding: 0.15rem 0.45rem;
-  font-size: 0.7rem;
-  font-family: var(--font-mono);
-  cursor: pointer;
-  border-radius: 2px;
-}
-
-.clear-console-btn:hover {
-  color: #FFF;
-  border-color: #8B949E;
-}
-
-.console-screen {
-  padding: 1.25rem;
-  height: 260px;
-  overflow-y: auto;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  line-height: 1.6;
-}
-
-.console-line { color: #8B949E; }
-.console-line.info { color: var(--terminal-cyan); }
-.console-line.success { color: var(--terminal-green); }
-.console-line.highlight { color: var(--gold-accent); }
-.console-line.error { color: #FF7B72; }
-
-/* ==========================================================================
    ACADEMIC FOOTER
    ========================================================================== */
 .academic-footer {
@@ -1182,7 +912,7 @@ a:hover {
 .system-stat .dot-indicator {
   width: 6px;
   height: 6px;
-  background: var(--terminal-green);
+  background: #38D9A9;
   border-radius: 50%;
   display: inline-block;
 }
@@ -1204,13 +934,6 @@ a:hover {
   }
   .overview-actions {
     flex-direction: row;
-  }
-  .terminal-grid {
-    grid-template-columns: 1fr;
-  }
-  .terminal-info-pane {
-    border-right: none;
-    border-bottom: 1px solid var(--terminal-border);
   }
 }
 

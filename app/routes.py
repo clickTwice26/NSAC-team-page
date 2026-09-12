@@ -17,7 +17,7 @@ PROJECT_DETAILS = {
     "tagline": "A high-performance computational platform analyzing planetary telemetry, solar flare shocks, and orbital trajectories in real-time.",
     "abstract": (
         "AstroPulse is an open-source astrodynamics and telemetry processing engine built by Team Nasa. "
-        "By fusing NASA planetary datasets, real-time satellite telemetry, and low-latency Redis caching matrices, "
+        "By fusing NASA planetary datasets, real-time satellite observations, and high-throughput data processing matrices, "
         "our system predicts orbital collision risks and solar particle storm arrivals up to 48 hours before impact."
     ),
     "features": [
@@ -29,12 +29,12 @@ PROJECT_DETAILS = {
         {
             "icon": "bolt",
             "title": "Real-Time Solar Event Detection",
-            "description": "Monitors L1 Lagrangian point telemetry from NASA SOHO and DSCOVR to provide proactive geomagnetic storm alerts for satellite constellations.",
+            "description": "Monitors L1 Lagrangian point data from NASA SOHO and DSCOVR to provide proactive geomagnetic storm alerts for satellite constellations.",
         },
         {
             "icon": "layers",
-            "title": "High-Throughput Redis Cache Engine",
-            "description": "Ingests and indexes over 10,000 telemetry datapoints per second using password-authenticated distributed in-memory data structures.",
+            "title": "High-Throughput Data Processing Engine",
+            "description": "Ingests and indexes over 10,000 telemetry datapoints per second using optimized in-memory streaming pipelines.",
         },
         {
             "icon": "globe",
@@ -44,7 +44,7 @@ PROJECT_DETAILS = {
     ],
     "tech_stack": [
         {"name": "Python & Flask 3", "type": "Core Architecture"},
-        {"name": "Redis 7 In-Memory Grid", "type": "Telemetry Ingestion"},
+        {"name": "Redis In-Memory Engine", "type": "Data Pipeline"},
         {"name": "Docker & Compose", "type": "Containerization"},
         {"name": "NASA Open APIs & ADS", "type": "Data Sources"},
         {"name": "Gunicorn WSGI", "type": "Production Server"},
@@ -84,10 +84,10 @@ TEAM_MEMBERS = [
     {
         "id": 3,
         "name": "David Kim",
-        "role": "Distributed Systems & Redis Data Engineer",
+        "role": "Distributed Systems & Data Engineer",
         "university": "Stanford University",
         "department": "Computational Engineering",
-        "bio": "Architects real-time telemetry streaming, container orchestration, and sub-millisecond Redis memory tiers.",
+        "bio": "Architects real-time telemetry streaming, container orchestration, and sub-millisecond memory tiers.",
         "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
         "initials": "DK",
         "github": "https://github.com",
@@ -125,41 +125,20 @@ TEAM_MEMBERS = [
 
 @main_bp.route("/")
 def index():
-    r = get_redis_client()
-    redis_connected = False
-    visits = 1
-
-    try:
-        visits = r.incr("nasa_team_portal_views")
-        redis_connected = True
-        redis_status = f"Online (Redis Synchronized: {visits:,} views)"
-    except Exception as exc:
-        visits = None
-        redis_status = f"Standalone Mode ({str(exc)})"
-
     return render_template(
         "index.html",
         team=TEAM_INFO,
         project=PROJECT_DETAILS,
         members=TEAM_MEMBERS,
-        visits=visits,
-        redis_connected=redis_connected,
-        redis_status=redis_status,
     )
 
 
-@main_bp.route("/health/redis")
-def redis_health():
-    r = get_redis_client()
-    try:
-        is_alive = r.ping()
-        return jsonify(
-            {
-                "status": "healthy",
-                "redis_ping": is_alive,
-                "team": "Nasa",
-                "challenge": "NASA Space Apps 2026",
-            }
-        )
-    except Exception as exc:
-        return jsonify({"status": "unhealthy", "error": str(exc)}), 500
+@main_bp.route("/health")
+def health():
+    return jsonify(
+        {
+            "status": "healthy",
+            "team": "Nasa",
+            "challenge": "NASA Space Apps 2026",
+        }
+    )

@@ -2,7 +2,7 @@
 <section class="academic-hero-section" id="about">
   <div class="content-bound">
     <div class="hero-header-line">
-      <span class="archival-reference">MISSION DISPATCH // NASA SPACE APPS CHALLENGE</span>
+      <span class="archival-reference">MISSION DISPATCH // NASA SPACE APPS CHALLENGE 2026</span>
       <span class="classification-tag">OFFICIAL TEAM SUBMISSION</span>
     </div>
 
@@ -30,38 +30,31 @@
 
       <div class="hero-stats-panel">
         <div class="panel-header">
-          <span class="panel-title">TEAM OVERVIEW</span>
-          <span class="panel-badge">5 RESEARCHERS</span>
+          <span class="panel-title">MISSION SUMMARY</span>
+          <span class="panel-badge">TEAM NASA</span>
         </div>
         <div class="metrics-grid">
           <div class="metric-cell">
             <span class="metric-value">5</span>
-            <span class="metric-label">Team Members</span>
+            <span class="metric-label">Researchers &amp; Engineers</span>
           </div>
           <div class="metric-cell">
             <span class="metric-value">4</span>
-            <span class="metric-label">Core Modules</span>
+            <span class="metric-label">Autonomous Modules</span>
           </div>
           <div class="metric-cell">
-            <span class="metric-value">100%</span>
-            <span class="metric-label">Open Source</span>
+            <span class="metric-value">48h</span>
+            <span class="metric-label">Advance Solar Alert Lead</span>
           </div>
           <div class="metric-cell highlight-cell">
-            <span class="metric-value">{{ visits if visits else '1' }}</span>
-            <span class="metric-label">Live Redis Visits</span>
+            <span class="metric-value">100%</span>
+            <span class="metric-label">Open Source &amp; Reproducible</span>
           </div>
         </div>
 
-        <div class="telemetry-compact-feed">
-          <div class="feed-row">
-            <span class="feed-time">STATUS</span>
-            <span class="feed-status {% if redis_connected %}status-active{% else %}status-inactive{% endif %}">
-              {{ 'REDIS CONNECTED' if redis_connected else 'STANDALONE MODE' }}
-            </span>
-          </div>
-          <div class="feed-desc">
-            {{ redis_status }}
-          </div>
+        <div class="team-mission-footer-box">
+          <span class="mission-track-label">CHALLENGE TRACK</span>
+          <span class="mission-track-title">{{ team.track }}</span>
         </div>
       </div>
     </div>
