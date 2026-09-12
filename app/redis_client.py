@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import socket
 from typing import TYPE_CHECKING, Optional
 
 import redis
@@ -13,14 +14,28 @@ if TYPE_CHECKING:
 redis_client: Optional[redis.Redis] = None
 
 
+def resolve_redis_url(url: str) -> str:
+    """
+    If url targets 'redis' host but we are running outside Docker containers,
+    fallback to 'localhost' so local development works seamlessly.
+    """
+    if "@redis:" in url or "://redis:" in url:
+        try:
+            socket.gethostbyname("redis")
+        except socket.gaierror:
+            url = url.replace("@redis:", "@localhost:").replace("://redis:", "://localhost:")
+    return url
+
+
 def init_redis(app: Flask) -> redis.Redis:
     """Initialize Redis connection using the Flask app config."""
     global redis_client
-    redis_url = app.config.get(
+    raw_url = app.config.get(
         "REDIS_URL",
         os.getenv("REDIS_URL", "redis://:dev_redis_password@redis:6379/0"),
     )
-    redis_client = redis.from_url(redis_url, decode_responses=True)
+    redis_url = resolve_redis_url(raw_url)
+    redis_client = redis.from_url(redis_url, decode_responses=True, socket_timeout=2)
     app.extensions["redis"] = redis_client
     return redis_client
 
@@ -35,7 +50,8 @@ def get_redis_client() -> redis.Redis:
         return current_app.extensions["redis"]
 
     if redis_client is None:
-        redis_url = os.getenv("REDIS_URL", "redis://:dev_redis_password@localhost:6379/0")
-        redis_client = redis.from_url(redis_url, decode_responses=True)
+        raw_url = os.getenv("REDIS_URL", "redis://:dev_redis_password@redis:6379/0")
+        redis_url = resolve_redis_url(raw_url)
+        redis_client = redis.from_url(redis_url, decode_responses=True, socket_timeout=2)
 
     return redis_client

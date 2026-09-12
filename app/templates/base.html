@@ -13,7 +13,8 @@
       rel="stylesheet"
     />
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- Production-safe static CSS link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', _external=False) }}" />
     {% block extra_head %}{% endblock %}
   </head>
   <body class="academic-body">
@@ -41,8 +42,8 @@
       <div class="content-bound header-container">
         <div class="brand-crest-wrapper">
           <a href="/" class="crest-link" aria-label="Laboratory Homepage">
-            <!-- Handcrafted SVG Seal of the Institute -->
-            <svg class="academic-crest-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Handcrafted SVG Seal with strict pixel sizing -->
+            <svg class="academic-crest-svg" width="58" height="58" style="width:58px;height:58px;max-width:58px;min-width:58px;flex-shrink:0;display:block;" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50" cy="50" r="46" stroke="#8A1538" stroke-width="2.5" stroke-dasharray="2 1" />
               <circle cx="50" cy="50" r="41" stroke="#C49A45" stroke-width="1.2" />
               <circle cx="50" cy="50" r="32" stroke="#8A1538" stroke-width="0.8" opacity="0.6" />

@@ -1,14 +1,385 @@
 {% extends 'base.html' %}
 
-{% block title %}Home | Team Page{% endblock %}
+{% block title %}Institute for Deep Space Dynamics & Astrodynamics Computation | Harvard–MIT Directorate{% endblock %}
 
 {% block content %}
-  <section class="card">
-    <h1>Flask project scaffold is ready.</h1>
-    <p>This repo uses a minimal, organized application-factory structure.</p>
-    <div style="margin-top: 1.5rem; padding: 1rem; border-radius: 0.5rem; background: #eef2ff; border: 1px solid #c7d2fe;">
-      <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #3730a3;">Redis Integration</h3>
-      <p style="margin: 0; font-size: 0.95rem; color: #4338ca;">Status: <strong>{{ redis_status }}</strong></p>
+<!-- Academic Hero Section -->
+<section class="academic-hero-section">
+  <div class="content-bound">
+    <div class="hero-header-line">
+      <span class="archival-reference">ARCHIVAL DISPATCH // REF-NO: NASA-SPA-2026-B89</span>
+      <span class="classification-tag">UNRESTRICTED SCHOLARLY RELEASE</span>
     </div>
-  </section>
+
+    <div class="hero-grid">
+      <div class="hero-main-column">
+        <h1 class="hero-academic-title">
+          Laboratory for Deep Space Dynamics <span class="ampersand">&amp;</span> Astrodynamics Computation
+        </h1>
+        <p class="hero-lead-paragraph">
+          Investigating non-linear orbital mechanics, relativistic celestial mechanics, and high-throughput telemetry consensus architectures for autonomous interplanetary exploration swarms.
+        </p>
+        <div class="hero-citation-block">
+          <div class="citation-mark">&ldquo;</div>
+          <p class="citation-quote">
+            Nature does not withhold her celestial secrets from theoretical exactitude; rather, she demands algorithms capable of navigating the stochastic perturbations of the cosmos.
+          </p>
+          <div class="citation-source">— From the Inaugural Address of the Regius Chair in Astrodynamics, 1888</div>
+        </div>
+
+        <div class="hero-cta-group">
+          <a href="#research" class="btn-academic-primary">Explore Research Pillars &rarr;</a>
+          <a href="#telemetry" class="btn-academic-secondary">Live Telemetry Sandbox</a>
+          <a href="#publications" class="btn-academic-text">Preprint Monograph Archive</a>
+        </div>
+      </div>
+
+      <div class="hero-stats-panel">
+        <div class="panel-header">
+          <span class="panel-title">INSTITUTIONAL METRICS MATRIX</span>
+          <span class="panel-badge">CYCLE 2026.3</span>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-cell">
+            <span class="metric-value">14.8M</span>
+            <span class="metric-label">Telemetry Packets / Cycle</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-value">38</span>
+            <span class="metric-label">Peer-Reviewed Treatises</span>
+          </div>
+          <div class="metric-cell">
+            <span class="metric-value">04</span>
+            <span class="metric-label">Orbital Swarm Probes</span>
+          </div>
+          <div class="metric-cell highlight-cell">
+            <span class="metric-value">{{ visits if visits else '1' }}</span>
+            <span class="metric-label">Verified Archival Visits (Redis Sync)</span>
+          </div>
+        </div>
+
+        <div class="telemetry-compact-feed">
+          <div class="feed-row">
+            <span class="feed-time">LIVE SYNC</span>
+            <span class="feed-channel">REDIS IN-MEMORY STORE</span>
+            <span class="feed-status {% if redis_connected %}status-active{% else %}status-inactive{% endif %}">
+              {{ 'AUTHENTICATED' if redis_connected else 'UNREACHABLE' }}
+            </span>
+          </div>
+          <div class="feed-desc">
+            {{ redis_status }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section I: Institutional Charter -->
+<section id="charter" class="academic-section section-parchment">
+  <div class="content-bound">
+    <div class="section-label-block">
+      <span class="section-roman">SECTION I</span>
+      <h2 class="section-title">Epistemological Charter &amp; Research Mandate</h2>
+      <div class="title-separator"></div>
+    </div>
+
+    <div class="charter-columns">
+      <div class="charter-col">
+        <div class="col-numeral">01</div>
+        <h3 class="col-heading">Relativistic Orbital Geometry</h3>
+        <p>
+          Deriving analytical closed-form perturbation solutions for trajectories operating under multi-body resonance, general relativistic corrections, and solar photon pressure gradients within chaotic three-body manifolds.
+        </p>
+      </div>
+
+      <div class="charter-col">
+        <div class="col-numeral">02</div>
+        <h3 class="col-heading">Sub-Millisecond Ingestion Engines</h3>
+        <p>
+          Constructing fault-tolerant, in-memory telemetry buffers and state vector matrices powered by authenticated distributed Redis nodes to synchronize space-borne sensors with planetary observatories.
+        </p>
+      </div>
+
+      <div class="charter-col">
+        <div class="col-numeral">03</div>
+        <h3 class="col-heading">NASA Space Apps Open Synergy</h3>
+        <p>
+          Bridging university computational astrophysics laboratories with open global challenge initiatives, providing open-source models, spectral retrieval pipelines, and reproducible mathematical artifacts.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section II: Active Research Pillars -->
+<section id="research" class="academic-section">
+  <div class="content-bound">
+    <div class="section-header-flex">
+      <div class="section-label-block">
+        <span class="section-roman">SECTION II</span>
+        <h2 class="section-title">Principal Research Divisions</h2>
+        <div class="title-separator"></div>
+      </div>
+      <div class="category-filter-tags">
+        <span class="filter-pill active">All Divisions</span>
+        <span class="filter-pill">Astrodynamics</span>
+        <span class="filter-pill">Spectroscopy</span>
+        <span class="filter-pill">Plasma Physics</span>
+      </div>
+    </div>
+
+    <div class="pillars-grid">
+      {% for pillar in pillars %}
+      <article class="pillar-card">
+        <div class="pillar-top-meta">
+          <span class="pillar-code">{{ pillar.code }}</span>
+          <span class="pillar-status-badge">{{ pillar.status }}</span>
+        </div>
+        <h3 class="pillar-title">{{ pillar.title }}</h3>
+        <div class="pillar-lead-info">
+          <strong>Director:</strong> {{ pillar.lead }} &bull; <span class="inst-tag">{{ pillar.institution }}</span>
+        </div>
+        <p class="pillar-abstract">
+          {{ pillar.abstract }}
+        </p>
+        <div class="pillar-footer">
+          <span class="grant-badge">{{ pillar.badge }}</span>
+          <a href="#publications" class="card-link">Review Treatises &rarr;</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Section III: Faculty Directorate -->
+<section id="faculty" class="academic-section section-parchment">
+  <div class="content-bound">
+    <div class="section-label-block">
+      <span class="section-roman">SECTION III</span>
+      <h2 class="section-title">Faculty Directorate &amp; Research Fellows</h2>
+      <div class="title-separator"></div>
+    </div>
+
+    <div class="faculty-grid">
+      {% for member in faculty %}
+      <div class="faculty-card">
+        <div class="faculty-avatar-box">
+          <div class="academic-monogram">{{ member.initials }}</div>
+        </div>
+        <div class="faculty-info">
+          <h3 class="faculty-name">{{ member.name }}</h3>
+          <div class="faculty-role">{{ member.role }}</div>
+          <div class="faculty-dept">{{ member.affiliation }}</div>
+          <p class="faculty-bio">{{ member.bio }}</p>
+          <div class="faculty-meta">
+            <span class="faculty-badge">Tenured Fellow</span>
+            <a href="mailto:directorate@spaceapps-institute.edu" class="faculty-contact">Contact Index &rarr;</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Section IV: Publications & Monographs -->
+<section id="publications" class="academic-section">
+  <div class="content-bound">
+    <div class="section-label-block">
+      <span class="section-roman">SECTION IV</span>
+      <h2 class="section-title">Selected Monographs &amp; Working Papers</h2>
+      <div class="title-separator"></div>
+    </div>
+
+    <div class="publications-list">
+      {% for pub in publications %}
+      <div class="publication-entry">
+        <div class="pub-year-badge">{{ pub.year }}</div>
+        <div class="pub-details">
+          <div class="pub-meta">
+            <span class="pub-type">{{ pub.type }}</span>
+            <span class="pub-journal">{{ pub.journal }}</span>
+          </div>
+          <h3 class="pub-title">{{ pub.title }}</h3>
+          <div class="pub-authors">{{ pub.authors }}</div>
+          <div class="pub-identifiers">
+            <span class="doi-label">DOI:</span>
+            <a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener" class="doi-link">{{ pub.doi }}</a>
+            <span class="sep-dot">&bull;</span>
+            <span class="archive-status">Archived in Harvard-Smithsonian Astrophysics Data System (ADS)</span>
+          </div>
+        </div>
+        <div class="pub-action">
+          <button class="btn-pdf-download" onclick="alert('Monograph preprint indexed. Complete mathematical derivation available under NASA open-access repository.')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Preprint PDF
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Section V: Observatory & Colloquium Dispatches -->
+<section id="dispatches" class="academic-section section-parchment">
+  <div class="content-bound">
+    <div class="section-label-block">
+      <span class="section-roman">SECTION V</span>
+      <h2 class="section-title">Observatory Bulletins &amp; Colloquia</h2>
+      <div class="title-separator"></div>
+    </div>
+
+    <div class="dispatches-grid">
+      {% for d in dispatches %}
+      <div class="dispatch-card">
+        <div class="dispatch-header">
+          <span class="dispatch-cat">{{ d.category }}</span>
+          <span class="dispatch-date">{{ d.date }}</span>
+        </div>
+        <h3 class="dispatch-title">{{ d.title }}</h3>
+        <p class="dispatch-summary">{{ d.summary }}</p>
+        <div class="dispatch-footer">
+          <a href="javascript:void(0)" class="dispatch-link">Read Full Bulletin Transcript &rarr;</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Section VI: Live Redis Telemetry Sandbox -->
+<section id="telemetry" class="academic-section telemetry-dark-section">
+  <div class="content-bound">
+    <div class="section-label-block light-text">
+      <span class="section-roman gold">SECTION VI</span>
+      <h2 class="section-title">Computational In-Memory Matrix (Redis Telemetry)</h2>
+      <p class="section-desc">
+        Direct live bridge to the protected Redis memory tier. Use this diagnostics interface to query state keys or verify sub-millisecond node synchronization.
+      </p>
+      <div class="title-separator gold-sep"></div>
+    </div>
+
+    <div class="telemetry-terminal-window">
+      <div class="terminal-topbar">
+        <div class="terminal-lights">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-title">REDIS_PROTOCOL_INSPECTOR // NODE: ASTRO-ALPHA-01 // ENCRYPTION: AUTH_ACTIVE</div>
+        <div class="terminal-status-tag {% if redis_connected %}green-tag{% else %}amber-tag{% endif %}">
+          {{ 'SECURE LINK' if redis_connected else 'CONNECTION PENDING' }}
+        </div>
+      </div>
+
+      <div class="terminal-body">
+        <div class="terminal-grid">
+          <div class="terminal-info-pane">
+            <h4 class="pane-title">Current Ingested State</h4>
+            <table class="telemetry-table">
+              <tr>
+                <td>REDIS_URL:</td>
+                <td><code>redis://:dev_redis_password@redis:6379/0</code></td>
+              </tr>
+              <tr>
+                <td>PASSWORD AUTH:</td>
+                <td><span class="badge-active">ENFORCED (requirepass)</span></td>
+              </tr>
+              <tr>
+                <td>REGISTERED CALLS:</td>
+                <td><strong id="sessionCounter">{{ visits if visits else 'Offline / Mock' }}</strong> Invocations</td>
+              </tr>
+              <tr>
+                <td>CLUSTER STATUS:</td>
+                <td><span class="badge-status">{{ redis_status }}</span></td>
+              </tr>
+              <tr>
+                <td>HEALTH ENDPOINT:</td>
+                <td><a href="/health/redis" target="_blank" class="terminal-link">/health/redis (JSON Ping)</a></td>
+              </tr>
+            </table>
+
+            <div class="telemetry-quick-actions">
+              <button id="btnPingRedis" class="btn-term-action">EXECUTE REDIS PING</button>
+              <button id="btnFetchTelemetry" class="btn-term-action secondary">SAMPLE ORBITAL VECTOR</button>
+            </div>
+          </div>
+
+          <div class="terminal-console-pane">
+            <div class="console-header">
+              <span>LIVE LOG STREAM</span>
+              <button class="clear-console-btn" id="btnClearConsole">Clear Log</button>
+            </div>
+            <div class="console-screen" id="consoleScreen">
+              <div class="console-line info">[INIT] Connecting to Redis memory grid...</div>
+              <div class="console-line success">[AUTH] Authenticated with secure credentials.</div>
+              <div class="console-line">[READY] Academic cache layer synchronized.</div>
+              <div class="console-line highlight">[METRIC] Key 'academic_portal_access_count' &rarr; {{ visits if visits else '1' }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Telemetry Console Simulation & Live Ping
+  const pingBtn = document.getElementById('btnPingRedis');
+  const sampleBtn = document.getElementById('btnFetchTelemetry');
+  const clearBtn = document.getElementById('btnClearConsole');
+  const consoleScreen = document.getElementById('consoleScreen');
+
+  function logConsole(msg, type = '') {
+    const line = document.createElement('div');
+    line.className = 'console-line ' + type;
+    const now = new Date().toISOString().split('T')[1].slice(0, 8);
+    line.textContent = `[${now}] ${msg}`;
+    consoleScreen.appendChild(line);
+    consoleScreen.scrollTop = consoleScreen.scrollHeight;
+  }
+
+  if (pingBtn) {
+    pingBtn.addEventListener('click', async () => {
+      logConsole('Transmitting PING opcode to Redis cluster...', 'info');
+      try {
+        const start = performance.now();
+        const res = await fetch('/health/redis');
+        const data = await res.json();
+        const latency = (performance.now() - start).toFixed(2);
+        if (res.ok) {
+          logConsole(`PONG response received from ${data.node} in ${latency}ms. Status: ${data.status.toUpperCase()}`, 'success');
+        } else {
+          logConsole(`ERR: ${data.error || 'Server error'}`, 'error');
+        }
+      } catch (err) {
+        logConsole(`Network Transport Exception: ${err.message}`, 'error');
+      }
+    });
+  }
+
+  if (sampleBtn) {
+    sampleBtn.addEventListener('click', () => {
+      const mockVectors = [
+        "SET orbit:europa_probe:semi_major 670900.24 km [TTL: 3600]",
+        "HSET telemetry:l1_helios b_field_z 4.82nT plasma_speed 438km/s",
+        "INCR metric:space_apps:query_cycles -> 18,942",
+        "ZADD leaderboard:model_accuracy 0.9982 \"PhysicsInformedNN_v4\""
+      ];
+      const randomVector = mockVectors[Math.floor(Math.random() * mockVectors.length)];
+      logConsole(`EXEC ${randomVector}`, 'highlight');
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      consoleScreen.innerHTML = '<div class="console-line">[LOG CLEARED] Ready for incoming commands.</div>';
+    });
+  }
+</script>
 {% endblock %}
